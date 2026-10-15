@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Management System</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-icon">📦</span>
+          <div>
+            <h1>Inventory Management</h1>
+            <p class="brand-sub">Mini Project #2 · Node.js + Express + MySQL</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button id="seedBtn" class="btn btn-ghost" type="button">Seed sample data</button>
+          <button id="themeToggle" class="btn btn-ghost" type="button" title="Toggle theme">🌙</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Stats -->
+      <section class="stats" id="stats">
+        <article class="stat-card">
+          <div class="stat-label">Total Products</div>
+          <div class="stat-value" id="statTotal">0</div>
+        </article>
+        <article class="stat-card stat-warn">
+          <div class="stat-label">Low Stock Alerts</div>
+          <div class="stat-value" id="statLowStock">0</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Stock Value</div>
+          <div class="stat-value" id="statValue">฿0.00</div>
+        </article>
+      </section>
+
+      <!-- Toolbar -->
+      <section class="toolbar">
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="🔍 Search name or product code..." />
+        </div>
+        <div class="filter-group">
+          <select id="categoryFilter">
+            <option value="">All categories</option>
+          </select>
+          <label class="checkbox">
+            <input type="checkbox" id="lowStockFilter" />
+            <span>Low stock only</span>
+          </label>
+        </div>
+        <button id="addBtn" class="btn btn-primary" type="button">+ Add Product</button>
+      </section>
+
+      <!-- Table -->
+      <section class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th class="num">Qty</th>
+              <th class="num">Price</th>
+              <th class="num">Threshold</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th class="num">Action</th>
+            </tr>
+          </thead>
+          <tbody id="productBody">
+            <tr><td colspan="9" class="empty">Loading products…</td></tr>
+          </tbody>
+        </table>
+        <p id="emptyState" class="empty hidden">No products found.</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="modalTitle">Add Product</h2>
+        <button id="closeModal" class="modal-close" type="button" aria-label="Close">×</button>
+      </div>
+      <form id="productForm" class="modal-body">
+        <input type="hidden" id="productId" />
+        <div class="field">
+          <label for="product_code">Product Code *</label>
+          <input id="product_code" name="product_code" type="text" maxlength="50" required />
+          <span class="field-error" data-for="product_code"></span>
+        </div>
+        <div class="field">
+          <label for="name">Name *</label>
+          <input id="name" name="name" type="text" maxlength="255" required />
+          <span class="field-error" data-for="name"></span>
+        </div>
+        <div class="field">
+          <label for="category">Category *</label>
+          <select id="category" name="category" required></select>
+          <span class="field-error" data-for="category"></span>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="quantity">Quantity *</label>
+            <input id="quantity" name="quantity" type="number" min="0" step="1" required />
+            <span class="field-error" data-for="quantity"></span>
+          </div>
+          <div class="field">
+            <label for="price">Price (฿) *</label>
+            <input id="price" name="price" type="number" min="0" step="0.01" required />
+            <span class="field-error" data-for="price"></span>
+          </div>
+          <div class="field">
+            <label for="low_stock_threshold">Low stock threshold *</label>
+            <input id="low_stock_threshold" name="low_stock_threshold" type="number" min="0" step="1" value="10" required />
+            <span class="field-error" data-for="low_stock_threshold"></span>
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button type="button" id="cancelBtn" class="btn btn-ghost">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        <p id="formError" class="form-error hidden"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
