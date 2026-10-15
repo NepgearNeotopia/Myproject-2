@@ -2,6 +2,30 @@
 
 Mini Project #2 — A web-based inventory management system built with Node.js, Express, and MySQL.
 
+## สมาชิกกลุ่ม
+| รหัสนักศึกษา | ชื่อ-นามสกุล | 
+| 660910487 | นายชินกร เทพพงษ์ประดิษฐ | 
+| 660910668 | นายบูรณ์ภัทร์ บุญสูขเกิด | 
+| 660911043 | นายสิงหา ฝอยทับทิม |
+
+## Screenshots
+## Screenshots
+
+### 1. Debugging Error
+Error encountered during development before fixing the issue.
+
+![Debugging Error](screenshots/debugging-error.png)
+
+### 2. Debugging Fixed
+Successful database connection and server startup after fixing the issue.
+
+![Debugging Fixed](screenshots/debugging-fixed.png)
+
+### 3. Inventory Management Website
+The web application displaying the inventory management interface.
+
+![Inventory Management Website](screenshots/inventory-web.png)
+
 ## Features
 
 - View all products in an inventory table
